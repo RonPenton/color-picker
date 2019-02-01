@@ -10,6 +10,8 @@
   "license": "MIT",
   "devDependencies": {
     "@types/bootstrap": "^4.2.1",
+    "@types/lodash": "^4.14.120",
+    "@types/ramda": "^0.25.47",
     "@types/react": "^16.7.0",
     "@types/react-bootstrap": "^0.32.16",
     "@types/react-dom": "^16.0.11",
@@ -22,6 +24,8 @@
   },
   "dependencies": {
     "bootstrap": "^4.2.1",
+    "lodash": "^4.17.11",
+    "ramda": "^0.26.1",
     "react": "^16.7.0",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.7.0"

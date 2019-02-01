@@ -1,0 +1,27 @@
+.colorbox {
+    height: 60%;
+}
+
+
+.paletteDrop {
+    border-radius: 50%;
+    font-size: 24px;
+    height: 56px;
+    margin: auto;
+    min-width: 56px;
+    width: 56px;
+    padding: 0;
+    overflow: hidden;
+    background: rgba(158,158,158,.2);
+    box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24);
+    position: relative;
+    line-height: normal;
+}
+
+.nopad-right {
+    padding-right: 0 !important;
+}
+
+.nopad-left {
+    padding-left: 0 !important;
+}
