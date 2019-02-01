@@ -36,15 +36,14 @@ export interface PaletteEntry {
 }
 
 export const KnownColors = {
-    yellow: { color: hexToRGB("#FFED00"), name: "yellow" },
+    yellow: { color: hexToRGB("#FFFF00"), name: "yellow" },
     red: { color: hexToRGB("#FF0000"), name: "red" },
-    magenta: { color: hexToRGB("#FF00AB"), name: "magenta" },
-    blue: { color: hexToRGB("#0047ab"), name: "blue" },
-    cyan: { color: hexToRGB("#00EDFF"), name: "cyan" },
-    green: { color: hexToRGB("#00B500"), name: "green" },
+    magenta: { color: hexToRGB("#FF00FF"), name: "magenta" },
+    blue: { color: hexToRGB("#0000FF"), name: "blue" },
+    cyan: { color: hexToRGB("#00FFFF"), name: "cyan" },
+    green: { color: hexToRGB("#00FF00"), name: "green" },
     white: { color: hexToRGB("#FFFFFF"), name: "white" },
     black: { color: hexToRGB("#000000"), name: "black" }
-
 }
 
 export type Palette = PaletteEntry[];
