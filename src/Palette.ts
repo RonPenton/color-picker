@@ -26,7 +26,8 @@ function componentToHex(c: number): string {
 }
 
 export function rgbToHex(color: Color) {
-    return "#" + componentToHex(color.r) + componentToHex(color.g) + componentToHex(color.b);
+    const f = (c: number) => componentToHex(Math.round(c));
+    return `#${f(color.r)}${f(color.g)}${f(color.b)}`;
 }
 
 export interface PaletteEntry {

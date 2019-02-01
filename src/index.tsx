@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Row, Col, Navbar, ButtonToolbar, Button, Modal } from 'react-bootstrap';
-import { Palette, BasicPalette, PickedColor, PaletteEntry, calculateColor, addPickedColor, removePickedColor, rgbToHex, rgb2lab, hexToRGB, deltaE, getTextColor, rgbToHsv } from './Palette';
+import { Palette, BasicPalette, PickedColor, PaletteEntry, calculateColor, addPickedColor, removePickedColor, rgbToHex, rgb2lab, hexToRGB, deltaE, getTextColor, rgbToHsv, lab2rgb } from './Palette';
 import { PalettePicker } from './PalettePicker';
 import "./index.css";
 import * as _ from 'lodash';
@@ -17,16 +17,28 @@ interface AppState {
 export class App extends React.Component<{}, AppState> {
     constructor(props: any) {
         super(props);
+
+        const params = new URLSearchParams(window.location.search);
+        let matchColor = this.getNewColor();
+        if (params.has("color")) {
+            matchColor = "#" + params.get("color");
+        }
+        else {
+            this.setCurrentColorUrl(matchColor);
+        }
+
         this.state = {
             palette: BasicPalette,
             pickedColor: {},
-            matchColor: this.getNewColor(),
+            matchColor,
             won: false
         }
     }
 
     newColor = () => {
-        this.setState({ matchColor: this.getNewColor() });
+        const matchColor = this.getNewColor();
+        this.setCurrentColorUrl(matchColor);
+        this.setState({ matchColor, pickedColor: {} });
     }
 
     reset = () => {
@@ -34,11 +46,11 @@ export class App extends React.Component<{}, AppState> {
     }
 
     getNewColor() {
-        return rgbToHex({
-            r: _.random(255),
-            g: _.random(255),
-            b: _.random(255)
-        });
+        return rgbToHex(lab2rgb({
+            l: _.random(0, 100),
+            a: _.random(-128, 128),
+            b: _.random(-128, 128)
+        }));
     }
 
     render() {
@@ -110,11 +122,18 @@ export class App extends React.Component<{}, AppState> {
         </div>
     }
 
+    setCurrentColorUrl(matchColor: string) {
+        window.history.pushState(null, `Color Picker Game - ${matchColor}`, `?color=${matchColor.substr(1)}`);
+    }
+
     handleClose = () => {
+        const matchColor = this.getNewColor();
+        this.setCurrentColorUrl(matchColor);
+
         this.setState({
             palette: BasicPalette,
             pickedColor: {},
-            matchColor: this.getNewColor(),
+            matchColor,
             won: false
         })
     }
